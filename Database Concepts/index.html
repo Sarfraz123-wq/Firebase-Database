@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Database</title>
+</head>
+<body>
+    <!-- 
+    1. sab se pehle application me cdn links lagani hain app.js link k niche database.js ki link lagani he copy paste kr k 
+
+    How to add data in firebase database.
+    -------------------------------------
+    2.ab jo data save krna ho usme onclick ka function banana he k jab ispe click ho to ye function execute ho or database me data save krne k lye niche ye likhenge lekin function me he.
+    firebase.database().ref('student').set(studentObject);
+    .ref('student') se aik student ka obj banega jisme data save hoga.
+    .set(studentObject) se data save hoga jo studentObject me data hoga.
+    .set method se agar refresh kr k doosra data save krwaenge ya doosre student ka nam wagera likhnge to wo data pehle wale data se override hojayega..
+
+    3.firebase.database().ref('student').push(studentObject);
+    push method se data override nahi hota he balke ye aik random key generate krta he ab hm apni marza se jitna data chahe save krwasakte hain.. 
+
+    4. agar reference object ka b koi child ref banana ho jese student object he or student1 student2 add krta jaaye to aise hoga.
+    firebase.database().ref('student/student1').push/set(studentObject);
+    firebase.database().ref('student').child('student1').push/set(studentObject);
+
+    5. agar me chahun mujhe firebase hee key banakr de jese push method me ho raha he lekin me set method use krn to me ye b kar sakta hn.
+
+    var key = firebase.database.ref('student').push().key
+    is sey unique random key generate hogi.
+    firebase.database().ref('student/' + key).set(studentObjcet);
+    is sey data save hoga. lekin ab data set method se override nahi hoga ab ye push method ki tarah work karega.
+
+    6. agar me chahun k me apni marzi ki unique keys generate krn to wo b kar sakta hn.
+    var key = Math.random() * 1234455;
+    firebase.database().ref('student/' + key.toFixed()).set(studentObject);
+    isme .toFixed() method use krna must he warna keys points me generate hogi jo k firebase fraction me keys ko support nahi krta error dega.
+
+
+    
+    How to get data from firebase database.
+    ----------------------------------------
+    there are two methods from which we can get data.
+    through once method and on method..
+
+    function getFirebaseData(){
+    firebase.database().ref('student').once('value',function(data){
+        console.log(data.val())
+    })
+}
+getFirebaseData()
+
+isme hm function akhir me banayenge or usko call krenge wo data dedega jo b firebase database me hoga.
+
+1- once method tab data deta he jab browser refresh hota he.
+2- or ye do parameters leta he value string me denge or callback function usme aik parameter data denge or console.log me data.val() denge .val() method readable data deta he agar hm srf data console log me likhte hain to wo bunch of objects deta he jo k data readable format me nahi hota he.
+
+3- agar mujhe koi specific data mangwana he to me simply uski key dedonga mujhe wohi data laakr dega.
+firebase.database().ref('student/-Mehsadgaxshga').once('value',function(data){
+    console.log(data.val())
+})
+ye mene key pass ki he...
+-------------------
+by using on method
+-------------------
+function getFirebaseData(){
+firebase.database().ref('student').on('child_added',function(data){
+    console.log(data.val())
+})
+}
+getFirebaseData()
+1- on method se data tab get hota he jab jab database me koi cheez add ki he ya koi changes aai ho to wo real time me data deta he hmen page refresh krne ki zaroorat nahi he isme. 
+
+How to delete data
+-------------------
+function removeFirebaseData(){
+    firebase.database().ref('student').remove()
+    poora student ka obj delete krdega.
+    agar me chahn poora student delete na ho uska koi student delete ho
+    firebase.database().ref('student/-Mahsgagsjah').remove()
+    mene uski key pass krdnga
+}
+removeFirebaseData()
+
+How to edit Data
+-----------------
+function editFirebaseData(){
+firebase.database().ref('student/-Mhjsagdahsuba').set({
+    key:Nhjuasghjahgjxs,
+    name:abcd,
+    roll:123
+})
+}
+editFirebaseData()
+--> 
+</body>
+</html>
