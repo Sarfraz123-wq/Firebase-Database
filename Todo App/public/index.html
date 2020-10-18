@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do App</title>
+    <link rel="stylesheet" href="./style.css">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBy0D9Ej7_vHWUt-Ok5PMhVkoeCt8do4UM",
+      authDomain: "todo-app-9582b.firebaseapp.com",
+      databaseURL: "https://todo-app-9582b.firebaseio.com",
+      projectId: "todo-app-9582b",
+      storageBucket: "todo-app-9582b.appspot.com",
+      messagingSenderId: "878041369112",
+      appId: "1:878041369112:web:f726ab1e38f8f0ce22116d",
+      measurementId: "G-BX70M6N4CK"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    //firebase.analytics();
+  </script>
+</head>
+<body>
+    <div class="container">
+        <div class="appContainer">
+            <h2>TO DO APP LIST</h2>
+            <br> <br>
+            
+            <input type="text" class="input">
+            <button class="add">ADD TODO</button>
+            <button class="deleteall">DELETE ALL</button>
+            <ul class="ul"></ul>
+        </div>
+    
+
+    </div>
+<script src="./app.js"></script>
+</body>
+</html>
